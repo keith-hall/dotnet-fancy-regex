@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- NuGet Package Metadata -->
+    <PackageId>DotNetFancyRegex</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Keith Hall</Authors>
+    <Description>A .NET wrapper for the Rust fancy-regex crate, providing advanced regular expression features including backreferences, lookahead, and lookbehind.</Description>
+    <PackageProjectUrl>https://github.com/keith-hall/dotnet-fancy-regex</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/keith-hall/dotnet-fancy-regex</RepositoryUrl>
+    <PackageTags>regex;fancy-regex;rust;ffi;regular-expression</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Include README in package -->
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    
+    <!-- Include the native library in the NuGet package -->
+    <None Include="../../fancy-regex-ffi/target/release/libfancy_regex_ffi.so" Pack="true" PackagePath="runtimes/linux-x64/native/" Condition="Exists('../../fancy-regex-ffi/target/release/libfancy_regex_ffi.so')" />
+    <None Include="../../fancy-regex-ffi/target/release/libfancy_regex_ffi.dylib" Pack="true" PackagePath="runtimes/osx-x64/native/" Condition="Exists('../../fancy-regex-ffi/target/release/libfancy_regex_ffi.dylib')" />
+    <None Include="../../fancy-regex-ffi/target/release/fancy_regex_ffi.dll" Pack="true" PackagePath="runtimes/win-x64/native/" Condition="Exists('../../fancy-regex-ffi/target/release/fancy_regex_ffi.dll')" />
+  </ItemGroup>
+
+</Project>

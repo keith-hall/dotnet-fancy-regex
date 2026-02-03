@@ -52,3 +52,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Rust
+fancy-regex-ffi/target/
+fancy-regex-ffi/Cargo.lock
