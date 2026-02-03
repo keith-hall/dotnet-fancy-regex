@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+    
+    - name: Build Rust FFI library
+      run: |
+        cd fancy-regex-ffi
+        cargo build --release
+        cd ..
+    
+    - name: Build .NET solution
+      run: dotnet build
+    
+    - name: Run tests
+      run: |
+        export LD_LIBRARY_PATH=fancy-regex-ffi/target/release:$LD_LIBRARY_PATH
+        dotnet test --no-build --verbosity normal
