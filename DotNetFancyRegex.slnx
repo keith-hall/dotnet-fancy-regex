@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/DotNetFancyRegex.Benchmarks/DotNetFancyRegex.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DotNetFancyRegex/DotNetFancyRegex.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DotNetFancyRegex.Tests/DotNetFancyRegex.Tests.csproj" />
+  </Folder>
+</Solution>
